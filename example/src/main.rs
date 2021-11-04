@@ -1,13 +1,12 @@
-use std::time::Duration;
 use closure_future::closure_future;
+use std::time::Duration;
 
 fn main() {
     let mut futures = Vec::new();
     for i in 0..16 {
         let (future, worker) = closure_future(move || {
-            let wait_time = i * 1337 % 17;
-            println!("Beg {} (wait {} sec)", i, wait_time);
-            std::thread::sleep(Duration::from_secs(i * 1337 % 17));
+            println!("Beg {}", i);
+            std::thread::sleep(Duration::from_secs(1));
             println!("End {}", i);
             i
         });
